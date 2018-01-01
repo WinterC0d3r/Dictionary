@@ -14,9 +14,16 @@ def wordSearch(enteredKey):
         return sourceData[enteredKey]
     # incase of typo, getting possible match
     elif len(get_close_matches(enteredKey, sourceData.keys())) > 0:
-        return "Did you mean: %s " % get_close_matches(enteredKey, sourceData.keys())[0]
+        varValidate = input ("Did you mean: %s\nType \"Y\" for yes, \"N\" for no. " % get_close_matches(enteredKey, sourceData.keys())[0])
+        if varValidate == "Y":
+            return sourceData[get_close_matches(enteredKey, sourceData.keys())[0]]
+        elif varValidate == 'N':
+            return "Did not find a match"
+        else:
+            return "You did not select a valid option"
+
     else:
-        return "Word not found, Please recheck"
+        return "Word not found, Please recheck...."
 
 # input var for lookup
 searchInput = input("Enter a word: ")
