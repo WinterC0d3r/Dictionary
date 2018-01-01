@@ -2,8 +2,6 @@
 English Dictionary, created in python and json. for lightweight use via terminal
 """
 import json
-import difflib
-from difflib import SequenceMatcher
 from difflib import get_close_matches
 
 # loading json data file containing Dictionary dataSource
@@ -17,7 +15,10 @@ def wordSearch(enteredKey):
     # if the entered word is a noun for e.g. a playce name
     elif enteredKey.title() in sourceData:
         return sourceData[enteredKey.title()]
-    # incase of typo, getting possible match
+    # for acronyms search
+    elif enteredKey.upper() in sourceData:
+        return sourceData[enteredKey.upper()]
+        # incase of typo, getting possible match
     elif len(get_close_matches(enteredKey, sourceData.keys())) > 0:
         varValidate = input ("Did you mean: %s\nType \"Y\" for yes, \"N\" for no. " % get_close_matches(enteredKey, sourceData.keys())[0])
 
