@@ -11,9 +11,12 @@ sourceData = json.load(open("DataSource.json"))
 
 # function for searching word
 def wordSearch(enteredKey):
+    enteredKey = enteredKey.lower()
     if enteredKey in sourceData:
         return sourceData[enteredKey]
-
+    # if the entered word is a noun for e.g. a playce name
+    elif enteredKey.title() in sourceData:
+        return sourceData[enteredKey.title()]
     # incase of typo, getting possible match
     elif len(get_close_matches(enteredKey, sourceData.keys())) > 0:
         varValidate = input ("Did you mean: %s\nType \"Y\" for yes, \"N\" for no. " % get_close_matches(enteredKey, sourceData.keys())[0])
@@ -32,9 +35,9 @@ def wordSearch(enteredKey):
 searchInput = input("Enter a word: ")
 
 # storing output into a variable for optimization
-results = wordSearch(searchInput.lower())
+results = wordSearch(searchInput)
 if type(results) == list:
     for r in results:
         print(r)
 else:
-    print(restults)
+    print(results)
