@@ -12,7 +12,7 @@ def wordSearch(enteredKey):
     enteredKey = enteredKey.lower()
     if enteredKey in sourceData:
         return sourceData[enteredKey]
-    # if the entered word is a noun for e.g. a playce name
+    # if the entered word is a noun for e.g. a place name
     elif enteredKey.title() in sourceData:
         return sourceData[enteredKey.title()]
     # for acronyms search
